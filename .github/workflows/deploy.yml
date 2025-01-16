@@ -23,15 +23,15 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Configure Git user
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-
     - name: Build and Export Next.js site
       run: npm run build
 
     - name: Deploy to GitHub Pages
-      run: npx gh-pages -d out
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        target_branch: page
+        # 部署目录为 VuePress 的默认输出目录
+        build_dir: out
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}

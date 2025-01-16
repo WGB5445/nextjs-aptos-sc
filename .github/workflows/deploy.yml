@@ -32,4 +32,4 @@ jobs:
     - name: Deploy to GitHub Pages
       run: npx gh-pages -d out
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
